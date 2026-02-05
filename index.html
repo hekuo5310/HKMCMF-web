@@ -1,0 +1,1089 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>HKMC云</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", Arial, sans-serif;
+      background: #f5f5f5;
+      color: #222;
+    }
+    
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    .container {
+      width: 1180px;
+      max-width: 95%;
+      margin: 0 auto;
+    }
+    
+    /* 头部 */
+    header {
+      background: #ffffff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    
+    .header {
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .logo img {
+      height: 45px;
+      display: block;
+    }
+    
+    .nav a {
+      margin-left: 28px;
+      font-size: 14px;
+      color: #333;
+      transition: color 0.3s;
+    }
+    
+    .nav a:hover {
+      color: #000;
+    }
+    
+    /* banner */
+    .banner {
+      background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+      color: #fff;
+      padding: 60px 0;
+      border-radius: 16px;
+      margin: 20px auto;
+      max-width: 95%;
+    }
+    
+    .banner-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+    
+    .banner h1 {
+      font-size: 36px;
+      margin: 0 0 12px;
+      font-weight: 600;
+    }
+    
+    .banner p {
+      font-size: 16px;
+      margin: 0;
+      color: #e0e0e0;
+    }
+    
+    .banner ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .banner li {
+      margin-bottom: 10px;
+      font-size: 15px;
+      color: #f0f0f0;
+      padding-left: 20px;
+      position: relative;
+    }
+    
+    .banner li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #4CAF50;
+      font-weight: bold;
+    }
+    
+    /* 产品区 */
+    .products {
+      background: #ffffff;
+      padding: 40px 0;
+      border-radius: 16px;
+      margin: 20px auto;
+      max-width: 95%;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    
+    .product {
+      border-bottom: 1px solid #f0f0f0;
+      padding: 30px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      transition: background 0.3s;
+      border-radius: 8px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    
+    .product:hover {
+      background: #fafafa;
+    }
+    
+    .product:last-child {
+      border-bottom: none;
+    }
+    
+    .product h2 {
+      margin: 0 0 8px;
+      font-size: 22px;
+      color: #000;
+      font-weight: 600;
+    }
+    
+    .product p {
+      margin: 0;
+      font-size: 14px;
+      color: #666;
+    }
+    
+    .product a {
+      border: 2px solid #000;
+      color: #000;
+      padding: 10px 28px;
+      font-size: 14px;
+      border-radius: 8px;
+      transition: all 0.3s;
+      font-weight: 500;
+    }
+    
+    .product a:hover {
+      background: #000;
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    
+    /* 优势 */
+    .adv {
+      background: #ffffff;
+      padding: 40px 0;
+      border-radius: 16px;
+      margin: 20px auto;
+      max-width: 95%;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    
+    .adv ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .adv li {
+      background: #fafafa;
+      border: 1px solid #e5e5e5;
+      padding: 22px;
+      flex: 1;
+      min-width: 220px;
+      font-size: 14px;
+      border-radius: 12px;
+      transition: all 0.3s;
+    }
+    
+    .adv li:hover {
+      border-color: #000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transform: translateY(-3px);
+    }
+    
+    /* footer */
+    footer {
+      background: #ffffff;
+      border-top: 1px solid #e0e0e0;
+      padding: 30px 0 20px;
+      font-size: 13px;
+      color: #666;
+      text-align: center;
+      margin-top: 40px;
+    }
+    
+    .footer-links {
+      margin-bottom: 12px;
+      line-height: 1.8;
+    }
+    
+    .footer-links a {
+      color: #666;
+      transition: color 0.3s;
+    }
+    
+    .footer-links a:hover {
+      color: #000;
+    }
+    
+    /* 弹窗遮罩 */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 20px;
+    }
+    
+    .modal-overlay.hidden {
+      display: none;
+    }
+    
+    /* 弹窗容器 */
+    .modal-container {
+      background: #ffffff;
+      border-radius: 16px;
+      width: 90%;
+      max-width: 900px;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: row;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+    
+    /* 侧边栏 */
+    .modal-sidebar {
+      width: 200px;
+      background: #f8f8f8;
+      border-right: 1px solid #e0e0e0;
+      padding: 20px 0;
+      overflow-y: auto;
+      flex-shrink: 0;
+    }
+    
+    .modal-sidebar-item {
+      padding: 12px 20px;
+      cursor: pointer;
+      font-size: 14px;
+      color: #666;
+      border-left: 3px solid transparent;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .modal-sidebar-item:hover {
+      background: #f0f0f0;
+      color: #000;
+    }
+    
+    .modal-sidebar-item.active {
+      background: #ffffff;
+      color: #000;
+      border-left-color: #000;
+      font-weight: 500;
+    }
+    
+    .modal-sidebar-item.read {
+      color: #999;
+    }
+    
+    .modal-sidebar-item .status-icon {
+      font-size: 12px;
+    }
+    
+    /* 主内容区域 */
+    .modal-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    
+    /* 弹窗内容区域 */
+    .modal-content {
+      padding: 35px 40px;
+      overflow-y: auto;
+      flex: 1;
+    }
+    
+    .modal-content::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    .modal-content::-webkit-scrollbar-track {
+      background: #f5f5f5;
+      border-radius: 4px;
+    }
+    
+    .modal-content::-webkit-scrollbar-thumb {
+      background: #bbb;
+      border-radius: 4px;
+    }
+    
+    .modal-content::-webkit-scrollbar-thumb:hover {
+      background: #999;
+    }
+    
+    .modal-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #000;
+      margin: 0 0 25px 0;
+      text-align: center;
+    }
+    
+    .modal-text {
+      font-size: 15px;
+      line-height: 1.8;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    
+    .modal-details {
+      background: #fafafa;
+      border-radius: 12px;
+      padding: 20px 25px;
+      margin: 20px 0;
+    }
+    
+    .modal-details h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #000;
+      margin: 0 0 15px 0;
+    }
+    
+    .modal-details ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .modal-details li {
+      padding: 8px 0;
+      font-size: 14px;
+      color: #444;
+      border-bottom: 1px solid #e8e8e8;
+    }
+    
+    .modal-details li:last-child {
+      border-bottom: none;
+    }
+    
+    .modal-details strong {
+      color: #000;
+      font-weight: 600;
+      display: inline-block;
+      min-width: 90px;
+    }
+    
+    .modal-content ul {
+      background: #fafafa;
+      border-radius: 12px;
+      padding: 20px 25px 20px 45px;
+      margin: 20px 0;
+      list-style: disc;
+    }
+    
+    .modal-content ul li {
+      padding: 8px 0;
+      font-size: 14px;
+      color: #444;
+      border-bottom: 1px solid #e8e8e8;
+      list-style: disc;
+    }
+    
+    .modal-content ul li:last-child {
+      border-bottom: none;
+    }
+    
+    .modal-content h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #000;
+      margin: 20px 0 15px 0;
+    }
+    
+    .notice-footer {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.7;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid #e8e8e8;
+    }
+    
+    /* 底部固定区域 */
+    .modal-bottom {
+      background: #ffffff;
+      padding: 20px 40px 25px;
+      border-top: 1px solid #e8e8e8;
+    }
+    
+    .checkbox-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      user-select: none;
+      gap: 15px;
+    }
+    
+    .checkbox-left {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      font-size: 14px;
+      color: #666;
+      gap: 10px;
+    }
+    
+    .checkbox-wrapper input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    
+    .modal-button {
+      width: 100%;
+      padding: 14px;
+      background: #d5d5d5;
+      color: #999;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: not-allowed;
+      transition: all 0.3s;
+    }
+    
+    .modal-button.active {
+      background: #000;
+      color: #fff;
+      cursor: pointer;
+    }
+    
+    .modal-button.active:hover {
+      background: #333;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    
+    .scroll-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 13px;
+      color: #666;
+    }
+    
+    .scroll-hint span {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    
+    /* 响应式 */
+    @media (max-width: 768px) {
+      .banner h1 { font-size: 28px; }
+      .modal-content { padding: 25px 20px; }
+      .modal-bottom { padding: 15px 20px 20px; }
+      .modal-details { padding: 15px 18px; }
+      .checkbox-wrapper { flex-wrap: wrap; }
+      .scroll-hint { width: 100%; justify-content: center; margin-top: 10px; }
+      .modal-container { max-width: 95%; }
+      .modal-sidebar { display: none; }
+      .modal-container { flex-direction: column; }
+    }
+</style>
+</head>
+
+<body>
+
+<!-- 公告弹窗 -->
+<div class="modal-overlay" id="noticeModal" style="display: none;">
+  <div class="modal-container">
+    <!-- 侧边栏 -->
+    <div class="modal-sidebar" id="modalSidebar">
+      <!-- 公告列表将动态生成 -->
+    </div>
+    
+    <!-- 主内容区 -->
+    <div class="modal-main">
+      <div class="modal-content" id="modalContent">
+        <!-- 公告内容将从 gonggao.md 动态加载 -->
+      </div>
+      
+      <div class="modal-bottom">
+        <div class="checkbox-wrapper">
+          <label class="checkbox-left" for="readConfirm">
+            <input type="checkbox" id="readConfirm">
+            我已认真阅读完整公告内容
+          </label>
+          <div class="scroll-hint" id="scrollHint">
+            <span>👆 请先滚动到底阅读完整内容</span>
+          </div>
+        </div>
+        <button class="modal-button" id="closeBtn" disabled>请阅读并等待 (<span id="countdown">8</span>s)</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="container header">
+    <div class="logo">
+      <img src="https://aliyun-oss-bucket.d-dos.cc/HKMC_logo.jpg" alt="HKMC云">
+    </div>
+    <div class="nav">
+      <a href="#">首页</a>
+      <a href="https://qm.qq.com/q/5vhRxkZIHu">官方QQ群</a>
+      <a href="https://miaoju.top/" target="_blank" rel="noopener">喵聚</a>
+      <a href="/login">登录</a>
+      <a href="/register">注册</a>
+    </div>
+  </div>
+</header>
+
+<div class="banner">
+  <div class="container banner-wrap">
+    <div>
+      <h1>稳定 · 实用 · 服务器服务</h1>
+      <p>云服务器 / 挂机宝 / 虚拟主机 / CDN</p>
+    </div>
+    <ul>
+      <li>长期稳定运行</li>
+      <li>价格清晰透明</li>
+      <li>即买即用</li>
+    </ul>
+  </div>
+</div>
+
+<div class="products">
+  <div class="container">
+    <div class="product">
+      <div>
+        <h2>云服务器</h2>
+        <p>适合网站、程序、业务部署</p>
+      </div>
+      <a href="/order/">立即购买</a>
+    </div>
+
+    <div class="product">
+      <div>
+        <h2>挂机宝</h2>
+        <p>低价稳定，适合长期挂机</p>
+      </div>
+      <a href="/order/">立即购买</a>
+    </div>
+
+    <div class="product">
+      <div>
+        <h2>虚拟主机</h2>
+        <p>即开即用，建站首选</p>
+      </div>
+      <a href="/order/">立即购买</a>
+    </div>
+
+    <div class="product">
+      <div>
+        <h2>CDN 加速</h2>
+        <p>提升访问速度，减轻源站压力</p>
+      </div>
+      <a href="/order/">立即购买</a>
+    </div>
+  </div>
+</div>
+
+<div class="adv">
+  <div class="container">
+    <ul>
+      <li>专注服务器与基础云服务</li>
+      <li>不搞复杂概念，简单好用</li>
+      <li>适合个人与工作室长期使用</li>
+    </ul>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-links">
+    友情链接：<a href="https://miaoju.top/" target="_blank" rel="noopener">喵聚弹幕网</a> | 
+    <a href="https://www.io.hk.cn/">站长博客</a><br>
+    本页面源代码:<a href="https://github.com/hekuo5310/HKMCMF/" target="_blank" rel="noopener" style="color: blue;">Github</a><br>
+    <a href="https://beian.miit.gov.cn/" target="_blank">闽ICP备2025112803号-1</a> | 
+    <a href="https://www.rainyun.com/hekuo_?s=cloud/">本站由雨云提供计算服务</a> | 
+    <a href="https://icp.6uu.us/query.php?icp_number=%E5%85%83-80320/" target="_blank" rel="noopener noreferrer">元-80320</a>
+  </div>
+  © <span id="y"></span> hekuo · All Rights Reserved
+</footer>
+
+<script>
+// 年份
+document.getElementById("y").textContent = new Date().getFullYear();
+
+// Cookie 操作函数
+function setCookie(name, value, days) {
+  const d = new Date();
+  d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+  const expires = "expires=" + d.toUTCString();
+  document.cookie = name + "=" + value + ";" + expires + ";path=/";
+}
+
+function getCookie(name) {
+  const nameEQ = name + "=";
+  const ca = document.cookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+  }
+  return null;
+}
+
+// Markdown 渲染函数（简化版）
+function renderMarkdown(md) {
+  let html = md.trim();
+  
+  // 先处理代码块（避免被其他规则影响）
+  const codeBlocks = [];
+  html = html.replace(/```([\s\S]*?)```/g, (match, code) => {
+    codeBlocks.push(code);
+    return `__CODE_BLOCK_${codeBlocks.length - 1}__`;
+  });
+  
+  // 分割成行处理
+  const lines = html.split('\n');
+  const processed = [];
+  let inList = false;
+  let currentParagraph = [];
+  let skippedLines = 0; // 计数已跳过的非空行数（前两行：标题+时间）
+  
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    
+    // 跳过前两个非空行（第一行标题、第二行时间）
+    if (skippedLines < 2) {
+      if (line !== '') {
+        skippedLines++;
+        continue;
+      }
+      // 空行也跳过（标题和时间之间可能有空行）
+      continue;
+    }
+    
+    // 空行 - 结束当前段落
+    if (line === '') {
+      if (currentParagraph.length > 0) {
+        processed.push('<p class="modal-text">' + currentParagraph.join('<br>') + '</p>');
+        currentParagraph = [];
+      }
+      if (inList) {
+        processed.push('</ul>');
+        inList = false;
+      }
+      continue;
+    }
+    
+    // 标题
+    if (line.match(/^### /)) {
+      if (currentParagraph.length > 0) {
+        processed.push('<p class="modal-text">' + currentParagraph.join('<br>') + '</p>');
+        currentParagraph = [];
+      }
+      if (inList) {
+        processed.push('</ul>');
+        inList = false;
+      }
+      processed.push('<h3>' + line.replace(/^### /, '') + '</h3>');
+      continue;
+    }
+    
+    if (line.match(/^## /)) {
+      if (currentParagraph.length > 0) {
+        processed.push('<p class="modal-text">' + currentParagraph.join('<br>') + '</p>');
+        currentParagraph = [];
+      }
+      if (inList) {
+        processed.push('</ul>');
+        inList = false;
+      }
+      processed.push('<h2 class="modal-title">' + line.replace(/^## /, '') + '</h2>');
+      continue;
+    }
+    
+    if (line.match(/^# /)) {
+      if (currentParagraph.length > 0) {
+        processed.push('<p class="modal-text">' + currentParagraph.join('<br>') + '</p>');
+        currentParagraph = [];
+      }
+      if (inList) {
+        processed.push('</ul>');
+        inList = false;
+      }
+      processed.push('<h1>' + line.replace(/^# /, '') + '</h1>');
+      continue;
+    }
+    
+    // 列表项
+    if (line.match(/^\* /)) {
+      if (currentParagraph.length > 0) {
+        processed.push('<p class="modal-text">' + currentParagraph.join('<br>') + '</p>');
+        currentParagraph = [];
+      }
+      if (!inList) {
+        processed.push('<ul>');
+        inList = true;
+      }
+      processed.push('<li>' + line.replace(/^\* /, '') + '</li>');
+      continue;
+    }
+    
+    // 普通文本行
+    if (inList) {
+      processed.push('</ul>');
+      inList = false;
+    }
+    currentParagraph.push(line);
+  }
+  
+  // 处理最后的段落
+  if (currentParagraph.length > 0) {
+    processed.push('<p class="modal-text">' + currentParagraph.join('<br>') + '</p>');
+  }
+  if (inList) {
+    processed.push('</ul>');
+  }
+  
+  html = processed.join('\n');
+  
+  // 粗体处理
+  html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  
+  // 恢复代码块
+  codeBlocks.forEach((code, i) => {
+    html = html.replace(`__CODE_BLOCK_${i}__`, `<pre><code>${code}</code></pre>`);
+  });
+  
+  return html;
+}
+
+// 弹窗逻辑
+const modal = document.getElementById('noticeModal');
+const modalSidebar = document.getElementById('modalSidebar');
+const modalContent = document.getElementById('modalContent');
+const scrollHint = document.getElementById('scrollHint');
+const checkbox = document.getElementById('readConfirm');
+const closeBtn = document.getElementById('closeBtn');
+const countdownSpan = document.getElementById('countdown');
+
+let countdown = 8;
+let isScrolledToBottom = false;
+let countdownInterval;
+let allNotices = [];
+let noticeInfoList = []; // 存储解析出的公告信息（标题、时间）
+let currentNoticeIndex = 0;
+let readStatus = []; // 记录每条公告的阅读状态
+let globalCountdownDone = false; // 全局倒计时是否已完成
+
+// 解析每条公告的第二行时间，返回 {title, time, timeStamp}
+function parseNoticeInfo(notice) {
+  const lines = notice.trim().split('\n');
+  let title = '';
+  let time = '';
+  let timeStamp = 0;
+
+  // 第一行：# 标题
+  if (lines[0] && lines[0].match(/^#\s+/)) {
+    title = lines[0].replace(/^#\s+/, '').trim();
+  }
+
+  // 第二行：时间 2025/02/03 13:02:15
+  if (lines[1]) {
+    const t = lines[1].trim();
+    // 匹配 YYYY/MM/DD HH:MM:SS
+    if (t.match(/^\d{4}\/\d{2}\/\d{2}\s+\d{2}:\d{2}:\d{2}$/)) {
+      time = t;
+      // 转换为 Date 能解析的格式
+      timeStamp = new Date(t.replace(/\//g, '-')).getTime();
+    }
+  }
+
+  return { title, time, timeStamp };
+}
+
+// 加载 gonggao.md 并判断是否需要弹出
+fetch('./themes/web/HKMC/gonggao.md')
+  .then(response => {
+    if (!response.ok) throw new Error('公告文件不存在');
+    return response.text();
+  })
+  .then(mdContent => {
+    const notices = mdContent.split(/\n---\n|\n\*\*\*\n/).filter(n => n.trim());
+    if (notices.length === 0) throw new Error('没有公告内容');
+
+    // 解析所有公告信息
+    const infoList = notices.map(n => parseNoticeInfo(n));
+
+    // 获取所有公告中最新的时间戳
+    const maxTime = Math.max(...infoList.map(i => i.timeStamp));
+
+    // 获取 cookie 里的时间戳
+    const lastRead = getCookie('notice_last_read');
+    const cookieTime = lastRead ? parseInt(lastRead) : 0;
+
+    // 只有公告最新时间 > cookie 时间，才弹出
+    if (maxTime <= cookieTime) {
+      throw new Error('没有新公告');
+    }
+
+    allNotices = notices;
+    noticeInfoList = infoList;
+    readStatus = new Array(notices.length).fill(false);
+
+    generateSidebar();
+    showNotice(0);
+    startGlobalCountdown();
+    modal.style.display = 'flex';
+  })
+  .catch(error => {
+    console.log('无需显示公告:', error.message);
+    modal.style.display = 'none';
+  });
+
+// 生成侧边栏
+function generateSidebar() {
+  modalSidebar.innerHTML = '';
+  
+  allNotices.forEach((notice, index) => {
+    const info = noticeInfoList[index];
+    const title = info.title || `公告 ${index + 1}`;
+    const time = info.time || '';
+    
+    const item = document.createElement('div');
+    item.className = 'modal-sidebar-item';
+    item.dataset.index = index;
+    
+    // 左侧：状态图标 + 标题+时间
+    const leftWrap = document.createElement('div');
+    leftWrap.style.cssText = 'display:flex;align-items:flex-start;gap:8px;flex:1;min-width:0;';
+    
+    const statusIcon = document.createElement('span');
+    statusIcon.className = 'status-icon';
+    statusIcon.style.cssText = 'flex-shrink:0;margin-top:2px;';
+    statusIcon.textContent = readStatus[index] ? '✓' : '○';
+    
+    // 标题 + 时间的容器
+    const textWrap = document.createElement('div');
+    textWrap.style.cssText = 'min-width:0;';
+    
+    const titleText = document.createElement('div');
+    titleText.style.cssText = 'white-space:nowrap;overflow:hidden;text-overflow:ellipsis;';
+    titleText.textContent = title;
+    titleText.title = title;
+    
+    textWrap.appendChild(titleText);
+    
+    // 时间显示
+    if (time) {
+      const timeText = document.createElement('div');
+      timeText.style.cssText = 'font-size:11px;color:#aaa;margin-top:2px;';
+      timeText.textContent = time;
+      textWrap.appendChild(timeText);
+    }
+    
+    leftWrap.appendChild(statusIcon);
+    leftWrap.appendChild(textWrap);
+    item.appendChild(leftWrap);
+    
+    item.addEventListener('click', () => {
+      showNotice(index);
+    });
+    
+    if (index === currentNoticeIndex) {
+      item.classList.add('active');
+    }
+    
+    if (readStatus[index]) {
+      item.classList.add('read');
+    }
+    
+    modalSidebar.appendChild(item);
+  });
+}
+
+// 显示指定公告
+function showNotice(index) {
+  if (index >= allNotices.length || index < 0) {
+    return;
+  }
+  
+  currentNoticeIndex = index;
+  const noticeHtml = renderMarkdown(allNotices[index]);
+  modalContent.innerHTML = noticeHtml;
+  
+  // 更新侧边栏状态
+  document.querySelectorAll('.modal-sidebar-item').forEach((item, i) => {
+    if (i === index) {
+      item.classList.add('active');
+    } else {
+      item.classList.remove('active');
+    }
+  });
+  
+  // 重置状态
+  isScrolledToBottom = false;
+  checkbox.checked = false;
+  closeBtn.disabled = true;
+  closeBtn.classList.remove('active');
+  scrollHint.style.display = 'inline-flex';
+  
+  // 滚动到顶部
+  modalContent.scrollTop = 0;
+  
+  // 检查是否需要滚动（内容是否超出）
+  checkScrollNeeded();
+  
+  // 更新按钮文本（不启动新的倒计时）
+  if (globalCountdownDone) {
+    closeBtn.textContent = '请确认"我已认真阅读完整公告内容"';
+  } else {
+    // 倒计时还在进行中，保持倒计时显示
+    closeBtn.innerHTML = '请阅读并等待 (<span id="countdown">' + countdown + '</span>s)';
+  }
+  
+  checkEnableButton();
+}
+
+// 启动全局倒计时（只调用一次）
+function startGlobalCountdown() {
+  countdown = 8;
+  closeBtn.innerHTML = '请阅读并等待 (<span id="countdown">8</span>s)';
+  
+  const countdownSpan = document.getElementById('countdown');
+  
+  countdownInterval = setInterval(function() {
+    countdown--;
+    if (countdownSpan) countdownSpan.textContent = countdown;
+    
+    if (countdown === 0) {
+      clearInterval(countdownInterval);
+      globalCountdownDone = true;
+      closeBtn.textContent = '请确认"我已认真阅读完整公告内容"';
+      checkEnableButton();
+    }
+  }, 1000);
+}
+
+// 检查内容是否需要滚动
+function checkScrollNeeded() {
+  const needsScroll = modalContent.scrollHeight > modalContent.clientHeight;
+  if (!needsScroll) {
+    // 内容不需要滚动，直接标记为已滚动到底
+    isScrolledToBottom = true;
+  }
+}
+
+// 检测是否滚动到底部
+modalContent.addEventListener('scroll', function() {
+  const scrollTop = modalContent.scrollTop;
+  const scrollHeight = modalContent.scrollHeight;
+  const clientHeight = modalContent.clientHeight;
+  
+  // 允许5px的误差
+  if (scrollTop + clientHeight >= scrollHeight - 5) {
+    isScrolledToBottom = true;
+    checkEnableButton();
+  }
+});
+
+// 复选框变化
+checkbox.addEventListener('change', checkEnableButton);
+
+// 检查是否可以启用按钮
+function checkEnableButton() {
+  if (isScrolledToBottom && checkbox.checked && globalCountdownDone) {
+    closeBtn.disabled = false;
+    closeBtn.classList.add('active');
+    
+    // 检查是否还有未读公告
+    const hasUnread = readStatus.some((status, index) => !status && index !== currentNoticeIndex);
+    
+    if (hasUnread) {
+      closeBtn.textContent = '确认并继续';
+    } else {
+      closeBtn.textContent = '我已全部知晓';
+    }
+  }
+}
+
+// 关闭弹窗或显示下一条
+closeBtn.addEventListener('click', function() {
+  console.log('按钮被点击，disabled状态:', closeBtn.disabled);
+  
+  if (!closeBtn.disabled) {
+    // 标记当前公告为已读
+    readStatus[currentNoticeIndex] = true;
+    console.log('当前公告已标记为已读，readStatus:', readStatus);
+    generateSidebar();
+    
+    // 检查是否所有公告都已读
+    const allRead = readStatus.every(status => status);
+    console.log('所有公告已读？', allRead);
+    
+    if (allRead) {
+      // 所有公告已读完，存储当前时间到cookie
+      console.log('所有公告已读，关闭弹窗');
+      setCookie('notice_last_read', new Date().getTime().toString(), 365);
+      modal.classList.add('hidden');
+      modal.style.display = 'none';
+    } else {
+      // 找到下一个未读公告
+      let nextIndex = -1;
+      for (let i = 0; i < readStatus.length; i++) {
+        if (!readStatus[i]) {
+          nextIndex = i;
+          break;
+        }
+      }
+      
+      if (nextIndex !== -1) {
+        showNotice(nextIndex);
+      }
+    }
+  }
+});
+
+// 防止点击弹窗外部关闭
+modal.addEventListener('click', function(e) {
+  if (e.target === modal) {
+    // 可选：添加抖动效果提示用户必须阅读
+    document.querySelector('.modal-container').style.animation = 'shake 0.5s';
+    setTimeout(() => {
+      document.querySelector('.modal-container').style.animation = '';
+    }, 500);
+  }
+});
+</script>
+
+</body>
+</html>
