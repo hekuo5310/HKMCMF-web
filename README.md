@@ -17,7 +17,7 @@
 0. 打开微软大战代码
 1. Ctrl+F
 2. 一键替换所有的HKMC云为你的云名称
-3. 未使用[HKMCMF-cart](https://github.com/hekuo5310/HKMCMF-order)的请将所有的/order替换为/cart
+3. 未使用[HKMCMF-cart](https://github.com/hekuo5310/HKMCMF-cart)的请将所有的/order替换为/cart
 4. 手动修改556~561
 5. 手动修改628~631
 6. 手动修改633~635
